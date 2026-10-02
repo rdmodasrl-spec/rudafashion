@@ -1,0 +1,524 @@
+@import "tailwindcss";
+
+@keyframes homepage-card-enter {
+  from {
+    opacity: 0;
+    translate: 0 14px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+.homepage-card-enter {
+  animation: homepage-card-enter 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .homepage-card-enter {
+    animation: none;
+  }
+}
+
+/* 商户入驻：AI 团队集结动画（提交成功后播放） */
+@keyframes onboarding-roster-enter {
+  from {
+    opacity: 0;
+    translate: 0 16px;
+    scale: 0.97;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+}
+
+.onboarding-roster-enter {
+  animation: onboarding-roster-enter 480ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes onboarding-checkmark-pop {
+  0% {
+    scale: 0.4;
+    opacity: 0;
+  }
+  60% {
+    scale: 1.15;
+    opacity: 1;
+  }
+  100% {
+    scale: 1;
+    opacity: 1;
+  }
+}
+
+.onboarding-checkmark-pop {
+  animation: onboarding-checkmark-pop 420ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes onboarding-badge-pulse {
+  0%,
+  100% {
+    scale: 1;
+  }
+  50% {
+    scale: 1.08;
+  }
+}
+
+.onboarding-badge-pulse {
+  animation: onboarding-badge-pulse 1.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .onboarding-roster-enter,
+  .onboarding-checkmark-pop,
+  .onboarding-badge-pulse {
+    animation: none;
+  }
+}
+
+@theme {
+  --font-sans: "Montserrat", "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+  --font-serif: "Montserrat", "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+  --font-editorial: "Montserrat", "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+  --color-neutral-50: #fbfaf8;
+  --color-neutral-100: #f5f3ef;
+  --color-neutral-200: #e9e6df;
+  --color-neutral-300: #d9d5cc;
+  --color-neutral-400: #aaa49a;
+  --color-neutral-500: #777167;
+  --color-neutral-600: #5e594f;
+  --color-neutral-700: #454139;
+  --color-neutral-800: #302d27;
+  --color-neutral-900: #201e1a;
+  --color-neutral-950: #12110f;
+}
+
+@layer base {
+  :root {
+    --sat: env(safe-area-inset-top, 0px);
+    --sar: env(safe-area-inset-right, 0px);
+    --sab: env(safe-area-inset-bottom, 0px);
+    --sal: env(safe-area-inset-left, 0px);
+    --ruda-paper: #fbfaf8;
+    --ruda-ink: #12110f;
+    --ruda-line: #e9e6df;
+    --ruda-focus: #777167;
+  }
+
+  /* One RUDA accent keeps every portal visually related; status colors stay semantic. */
+  .portal-theme-buyer {
+    --portal-accent: #201e1a;
+    --portal-accent-soft: #f5f3ef;
+    --portal-accent-contrast: #ffffff;
+  }
+
+  .portal-theme-merchant {
+    --portal-accent: #201e1a;
+    --portal-accent-soft: #f5f3ef;
+    --portal-accent-contrast: #ffffff;
+  }
+
+  .portal-theme-employee {
+    --portal-accent: #201e1a;
+    --portal-accent-soft: #f5f3ef;
+    --portal-accent-contrast: #ffffff;
+  }
+
+  .portal-theme-admin {
+    --portal-accent: #201e1a;
+    --portal-accent-soft: #f5f3ef;
+    --portal-accent-contrast: #ffffff;
+  }
+
+  .portal-logo-mark {
+    background: var(--portal-accent);
+    color: var(--portal-accent-contrast);
+  }
+
+  .portal-accent-text {
+    color: var(--portal-accent);
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    scroll-behavior: smooth;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--ruda-paper);
+    color: var(--ruda-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    overscroll-behavior-y: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  #root.ruda-monochrome {
+    filter: grayscale(1);
+  }
+
+  h1 {
+    font-family: var(--font-serif);
+    line-height: 1.2;
+  }
+
+  h2:not(.font-serif),
+  h3:not(.font-serif),
+  h4:not(.font-serif) {
+    font-family: var(--font-editorial);
+  }
+
+  nav {
+    font-family: var(--font-editorial);
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font-family: var(--font-editorial);
+  }
+
+  input,
+  select,
+  textarea {
+    border-color: var(--ruda-line);
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: #8b857b;
+  }
+
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  summary:focus-visible {
+    outline: 2px solid var(--ruda-focus);
+    outline-offset: 2px;
+  }
+
+  a {
+    text-underline-offset: 0.18em;
+  }
+
+  table {
+    border-collapse: collapse;
+  }
+
+  th {
+    font-family: var(--font-editorial);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  /* Prevent mobile Safari iOS auto-zoom on inputs */
+  @media screen and (max-width: 767px) {
+    input, select, textarea {
+      font-size: 16px !important;
+    }
+
+    button, a, select, input, textarea {
+      transition-duration: 180ms;
+    }
+  }
+
+  ::selection {
+    background-color: #201e1a;
+    color: #ffffff;
+  }
+}
+
+/* App-style touch targets & utility classes */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.safe-area-bottom {
+  padding-bottom: max(0.5rem, env(safe-area-inset-bottom, 0px));
+}
+
+/* The mobile/PWA shell uses the fixed bottom navigation instead of the web footer. */
+@media screen and (max-width: 767px), (display-mode: standalone) {
+  .app-footer {
+    display: none;
+  }
+}
+
+/* Hide horizontal scrollbar while keeping momentum scroll */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Active touch feedback for mobile app buttons */
+.tap-active:active {
+  transform: scale(0.97);
+  transition: transform 0.08s ease;
+}
+
+@layer components {
+  .merchant-web-layout {
+    --color-neutral-50: #f8fafc;
+    --color-neutral-100: #f1f5f9;
+    --color-neutral-200: #e2e8f0;
+    --color-neutral-300: #cbd5e1;
+    --color-neutral-400: #94a3b8;
+    --color-neutral-500: #64748b;
+    --color-neutral-600: #475569;
+    --color-neutral-700: #334155;
+    --color-neutral-800: #1e293b;
+    --color-neutral-900: #0f172a;
+    --color-neutral-950: #020617;
+  }
+
+  .merchant-web-layout .merchant-web-sidebar-nav > div > button {
+    @apply flex w-full items-center rounded-lg px-3 py-2.5 text-left text-xs transition-colors;
+  }
+
+  .merchant-web-layout [class*="bg-amber-"],
+  .merchant-web-layout [class*="bg-orange-"],
+  .merchant-web-layout [class*="bg-rose-"],
+  .merchant-web-layout [class*="bg-red-"],
+  .merchant-web-layout [class*="bg-pink-"],
+  .merchant-web-layout [class*="bg-violet-"],
+  .merchant-web-layout [class*="bg-purple-"] {
+    background-color: #f1f5f9 !important;
+  }
+
+  .merchant-web-layout [class*="text-amber-"],
+  .merchant-web-layout [class*="text-orange-"],
+  .merchant-web-layout [class*="text-rose-"],
+  .merchant-web-layout [class*="text-red-"],
+  .merchant-web-layout [class*="text-pink-"],
+  .merchant-web-layout [class*="text-violet-"],
+  .merchant-web-layout [class*="text-purple-"] {
+    color: #475569 !important;
+  }
+
+  .merchant-web-layout [class*="border-amber-"],
+  .merchant-web-layout [class*="border-orange-"],
+  .merchant-web-layout [class*="border-rose-"],
+  .merchant-web-layout [class*="border-red-"],
+  .merchant-web-layout [class*="border-pink-"],
+  .merchant-web-layout [class*="border-violet-"],
+  .merchant-web-layout [class*="border-purple-"] {
+    border-color: #e2e8f0 !important;
+  }
+
+  .merchant-web-layout [class*="bg-indigo-"],
+  .merchant-web-layout [class*="bg-sky-"],
+  .merchant-web-layout [class*="bg-cyan-"] {
+    background-color: #eff6ff !important;
+  }
+
+  .merchant-web-layout [class*="text-indigo-"],
+  .merchant-web-layout [class*="text-sky-"],
+  .merchant-web-layout [class*="text-cyan-"] {
+    color: #1d4ed8 !important;
+  }
+
+  .merchant-web-layout [class*="border-indigo-"],
+  .merchant-web-layout [class*="border-sky-"],
+  .merchant-web-layout [class*="border-cyan-"] {
+    border-color: #bfdbfe !important;
+  }
+
+  .merchant-web-layout [class*="bg-emerald-50"],
+  .merchant-web-layout [class*="bg-emerald-100"],
+  .merchant-web-layout [class*="bg-emerald-200"],
+  .merchant-web-layout [class*="bg-green-50"],
+  .merchant-web-layout [class*="bg-green-100"],
+  .merchant-web-layout [class*="bg-green-200"],
+  .merchant-web-layout [class*="bg-teal-50"],
+  .merchant-web-layout [class*="bg-teal-100"],
+  .merchant-web-layout [class*="bg-teal-200"] {
+    background-color: #ecfdf5 !important;
+  }
+
+  .merchant-web-layout [class*="text-emerald-"],
+  .merchant-web-layout [class*="text-green-"],
+  .merchant-web-layout [class*="text-teal-"] {
+    color: #047857 !important;
+  }
+
+  .merchant-web-layout [class*="border-emerald-"],
+  .merchant-web-layout [class*="border-green-"],
+  .merchant-web-layout [class*="border-teal-"] {
+    border-color: #a7f3d0 !important;
+  }
+
+  .ui-card {
+    @apply rounded-2xl border border-neutral-200/80 bg-white shadow-sm;
+    box-shadow: 0 8px 30px -24px rgb(32 30 26 / 35%);
+  }
+
+  .ui-card-hover {
+    @apply transition-all duration-200 hover:-translate-y-0.5 hover:border-neutral-300 hover:shadow-lg;
+  }
+
+  .ui-section-title {
+    @apply text-[11px] font-semibold uppercase tracking-[0.08em] text-neutral-500;
+    font-family: var(--font-editorial);
+  }
+
+  .ui-primary-button {
+    @apply rounded-xl bg-neutral-950 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-neutral-800 hover:shadow-md active:translate-y-0;
+    letter-spacing: 0.01em;
+  }
+
+  .ui-secondary-button {
+    @apply rounded-xl border border-neutral-200 bg-white px-4 py-2.5 text-sm font-semibold text-neutral-800 shadow-sm transition-all hover:-translate-y-0.5 hover:border-neutral-300 hover:bg-neutral-50;
+    letter-spacing: 0.01em;
+  }
+
+  .ui-page-shell {
+    @apply mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8;
+  }
+
+  .ui-page-header {
+    @apply mb-6 flex flex-col gap-3 border-b border-neutral-200/80 pb-5 sm:flex-row sm:items-end sm:justify-between;
+  }
+
+  .ui-page-title {
+    @apply text-xl font-bold tracking-tight text-neutral-950 sm:text-2xl;
+  }
+
+  .ui-page-subtitle {
+    @apply mt-1 max-w-2xl text-xs leading-5 text-neutral-500 sm:text-sm;
+  }
+
+  .ui-empty-state {
+    @apply mx-auto flex max-w-lg flex-col items-center justify-center rounded-2xl border border-dashed border-neutral-300 bg-white px-6 py-14 text-center shadow-sm;
+  }
+
+  .ui-tab-list {
+    @apply flex gap-1.5 overflow-x-auto border-b border-neutral-200/80 pb-2;
+  }
+
+  .ui-tab {
+    @apply shrink-0 rounded-xl px-4 py-2 text-xs font-semibold transition-colors;
+    font-family: var(--font-editorial);
+  }
+
+  .merchant-dashboard-home > :not(.merchant-dashboard-featured) {
+    display: none;
+  }
+
+  .merchant-dashboard-featured {
+    min-height: calc(100vh - 7.5rem);
+    padding-bottom: 2.5rem;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgb(255 255 255 / 95%), transparent 50%),
+      linear-gradient(180deg, #f8fafc 0%, #f1f5f9 65%, #f8fafc 100%);
+  }
+
+  .merchant-home-intro {
+    animation: merchant-home-enter 650ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+
+  .merchant-home-prompt:focus-within {
+    box-shadow: 0 18px 44px -26px rgb(15 23 42 / 38%);
+  }
+
+  .merchant-home-answer {
+    animation: merchant-home-enter 360ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+
+  .merchant-home-card {
+    animation: merchant-home-enter 520ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+
+  .merchant-home-product-grid > :nth-child(2),
+  .merchant-home-action-grid > :nth-child(2) {
+    animation-delay: 60ms;
+  }
+
+  .merchant-home-product-grid > :nth-child(3),
+  .merchant-home-action-grid > :nth-child(3) {
+    animation-delay: 120ms;
+  }
+
+  .merchant-home-product-grid > :nth-child(4),
+  .merchant-home-action-grid > :nth-child(4) {
+    animation-delay: 180ms;
+  }
+
+  .merchant-home-product-grid > :nth-child(5) {
+    animation-delay: 240ms;
+  }
+
+  .merchant-home-product-grid > :nth-child(6) {
+    animation-delay: 300ms;
+  }
+
+  .merchant-home-tone-blue {
+    background-image: linear-gradient(115deg, #fff 55%, #eff6ff 100%);
+  }
+
+  .merchant-home-tone-amber {
+    background-image: linear-gradient(115deg, #fff 55%, #fffbeb 100%);
+  }
+
+  .merchant-home-tone-green {
+    background-image: linear-gradient(115deg, #fff 55%, #ecfdf5 100%);
+  }
+
+  .merchant-home-tone-violet {
+    background-image: linear-gradient(115deg, #fff 55%, #f5f3ff 100%);
+  }
+
+  @keyframes merchant-home-enter {
+    from {
+      opacity: 0;
+      translate: 0 12px;
+    }
+    to {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+
+  @layer utilities {
+    h1[class*="text-4xl"],
+    h1[class*="text-5xl"],
+    h1[class*="text-6xl"] {
+      font-size: clamp(1.5rem, 3.2vw, 2rem);
+    }
+
+    h2[class*="text-3xl"],
+    h2[class*="text-4xl"],
+    h2[class*="text-5xl"],
+    h2[class*="text-6xl"] {
+      font-size: clamp(1.25rem, 2.4vw, 1.5rem);
+    }
+
+    h3[class*="text-3xl"],
+    h3[class*="text-4xl"],
+    h3[class*="text-5xl"],
+    h3[class*="text-6xl"] {
+      font-size: clamp(1.125rem, 2vw, 1.25rem);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .merchant-home-intro,
+    .merchant-home-answer,
+    .merchant-home-card {
+      animation: none;
+    }
+  }
+}
